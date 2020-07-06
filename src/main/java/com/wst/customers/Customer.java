@@ -1,4 +1,4 @@
-package com.wst.clients;
+package com.wst.customers;
 
 import java.util.Objects;
 
@@ -7,16 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Client {
+public class Customer {
 
     private @Id @GeneratedValue Long id;
 	private String firstName;
 	private String lastName;
     private String address;
     
-    private Client() {}
+    private Customer() {}
 
-    public Client(String firstName, String lastName, String address) {
+    public Customer(String firstName, String lastName, String address) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -26,11 +26,11 @@ public class Client {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Client client = (Client) o;
-		return Objects.equals(id, client.id) &&
-			Objects.equals(firstName, client.firstName) &&
-			Objects.equals(lastName, client.lastName) &&
-			Objects.equals(address, client.address);
+		Customer customer = (Customer) o;
+		return Objects.equals(id, customer.id) &&
+			Objects.equals(firstName, customer.firstName) &&
+			Objects.equals(lastName, customer.lastName) &&
+			Objects.equals(address, customer.address);
 	}
 	
     @Override
@@ -73,15 +73,12 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client{" +
+		return "Customer{" +
 			"id=" + id +
 			", firstName='" + firstName + '\'' +
 			", lastName='" + lastName + '\'' +
 			", address='" + address + '\'' +
 			'}';
 	}
-    
-
-
     
 }

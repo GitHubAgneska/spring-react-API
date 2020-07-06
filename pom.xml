@@ -56,6 +56,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- https://github.com/eirslett/frontend-maven-plugin#running-webpack -->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.9.1</version>
+			</plugin>
 		</plugins>
 	</build>
 
