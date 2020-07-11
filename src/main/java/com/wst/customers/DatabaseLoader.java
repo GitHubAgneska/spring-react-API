@@ -19,7 +19,7 @@ public class DatabaseLoader implements CommandLineRunner {
 	public void run(String... strings) throws Exception {
 
         this.repository.save(new Customer("Nancy", "Botwin", "Agrestic CA"));
-
-
+        this.repository.save(new Customer("Bojack", "Horseman", "Hollywoo CA"));
+        this.repository.save(new Customer("Brian", "Griffin", "Quahog Rhode Island"));
     }
 }
