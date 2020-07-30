@@ -1,10 +1,11 @@
 package com.wst.customers;
-
 import java.util.Objects;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Version;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Customer {
@@ -12,14 +13,21 @@ public class Customer {
     private @Id @GeneratedValue Long id;
 	private String firstName;
 	private String lastName;
-    private String address;
-    
-    private Customer() {}
+	private String address;
+	
+	private @Version @JsonIgnore Long version;
 
-    public Customer(String firstName, String lastName, String address) {
+	// a manager can have multiple customers
+	private @ManyToOne Manager manager;
+	
+
+    // private Customer() {}
+
+    public Customer(String firstName, String lastName, String address, Manager manager) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
+		this.manager = manager;
     }
     
     @Override
@@ -30,12 +38,14 @@ public class Customer {
 		return Objects.equals(id, customer.id) &&
 			Objects.equals(firstName, customer.firstName) &&
 			Objects.equals(lastName, customer.lastName) &&
-			Objects.equals(address, customer.address);
+			Objects.equals(address, customer.address) &&
+			Objects.equals(version, customer.version) &&
+			Objects.equals(manager, customer.manager);
 	}
 	
     @Override
 	public int hashCode() {
-		return Objects.hash(id, firstName, lastName, address);
+		return Objects.hash(id, firstName, lastName, address, version, manager);
     }
 
     
@@ -70,6 +80,21 @@ public class Customer {
     public void setAddress(String address) {
 		this.address = address;
 	}
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public Manager getManager() {
+		return manager;
+	}
+
+	public void setManager(Manager manager) {
+		this.manager = manager;
+	}
 
 	@Override
 	public String toString() {
@@ -78,6 +103,8 @@ public class Customer {
 			", firstName='" + firstName + '\'' +
 			", lastName='" + lastName + '\'' +
 			", address='" + address + '\'' +
+			", version=" + version +
+			", manager=" + manager +
 			'}';
 	}
     
